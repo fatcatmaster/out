@@ -1,0 +1,49 @@
+{
+  "groups": [
+    {
+      "name": "spring.rabbit",
+      "type": "com.fatcat.rabbit.config.RabbitValueConfiguration",
+      "sourceType": "com.fatcat.rabbit.config.RabbitValueConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.rabbit.host",
+      "type": "java.lang.String",
+      "description": "rabbit 主机地址",
+      "sourceType": "com.fatcat.rabbit.config.RabbitValueConfiguration"
+    },
+    {
+      "name": "spring.rabbit.name",
+      "type": "java.lang.String",
+      "description": "登录用户名",
+      "sourceType": "com.fatcat.rabbit.config.RabbitValueConfiguration"
+    },
+    {
+      "name": "spring.rabbit.password",
+      "type": "java.lang.String",
+      "description": "登录用户密码",
+      "sourceType": "com.fatcat.rabbit.config.RabbitValueConfiguration"
+    },
+    {
+      "name": "spring.rabbit.port",
+      "type": "java.lang.Integer",
+      "description": "rabbit 服务端口",
+      "sourceType": "com.fatcat.rabbit.config.RabbitValueConfiguration",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.rabbit.uri",
+      "type": "java.lang.String",
+      "description": "主机资源地址（包含通讯方式、用户名、密码、端口）",
+      "sourceType": "com.fatcat.rabbit.config.RabbitValueConfiguration"
+    },
+    {
+      "name": "spring.rabbit.virtual-host",
+      "type": "java.lang.String",
+      "description": "当前服务使用的分区地址名",
+      "sourceType": "com.fatcat.rabbit.config.RabbitValueConfiguration"
+    }
+  ],
+  "hints": []
+}

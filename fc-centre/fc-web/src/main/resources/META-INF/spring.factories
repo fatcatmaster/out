@@ -1,0 +1,6 @@
+# 当前文件的目的是为了让该文件所在服务的配置采用注入方式加载到 引用了其依赖的 服务
+# 指定需要注入的配置类所在的路径
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.fatcat.web.config.WebMvcConfiguration,\
+  com.fatcat.web.handler.GlobalExceptionHandler,\
+  com.fatcat.web.handler.GlobalResponseHandler

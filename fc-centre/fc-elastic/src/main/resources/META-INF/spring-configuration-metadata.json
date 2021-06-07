@@ -1,0 +1,72 @@
+{
+  "groups": [
+    {
+      "name": "spring.elastic",
+      "type": "com.fatcat.elastic.config.ElasticValueConfiguration",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.elastic.connect-enabled",
+      "type": "java.lang.Boolean",
+      "description": "是否开启es连接",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.elastic.connect-timeout",
+      "type": "java.lang.Integer",
+      "description": "连接超时时间",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.elastic.max-connect",
+      "type": "java.lang.Integer",
+      "description": "最大连接数",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.elastic.max-connect-route",
+      "type": "java.lang.Integer",
+      "description": "最大路由数连接数",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.elastic.name",
+      "type": "java.lang.String",
+      "description": "用户名",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration"
+    },
+    {
+      "name": "spring.elastic.password",
+      "type": "java.lang.String",
+      "description": "密码",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration"
+    },
+    {
+      "name": "spring.elastic.request-timeout",
+      "type": "java.lang.Integer",
+      "description": "获取连接超时时间",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.elastic.socket-timeout",
+      "type": "java.lang.Integer",
+      "description": "会话超时时间",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.elastic.uris",
+      "type": "java.util.List<java.lang.String>",
+      "description": "es节点",
+      "sourceType": "com.fatcat.elastic.config.ElasticValueConfiguration"
+    }
+  ],
+  "hints": []
+}

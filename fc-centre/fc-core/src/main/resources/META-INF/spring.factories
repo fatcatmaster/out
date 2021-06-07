@@ -1,0 +1,18 @@
+# 当前文件的目的是为了让该文件所在服务的配置采用注入方式加载到 引用了其依赖的 服务
+# 指定需要注入的配置类所在的路径
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.fatcat.core.config.JacksonConfiguration,\
+  com.fatcat.core.config.ValidatorConfiguration,\
+  com.fatcat.core.feign.codec.FeignCoder,\
+  com.fatcat.core.feign.config.FeignConfiguration,\
+  com.fatcat.core.feign.config.HystrixConfiguration,\
+  com.fatcat.core.feign.interceptor.FeignInterceptor,\
+  com.fatcat.core.logger.aop.LoggerAop,\
+  com.fatcat.core.logger.config.LoggerConfiguration,\
+  com.fatcat.core.logger.listener.LoggerListener,\
+  com.fatcat.core.redis.config.RedisConfiguration,\
+  com.fatcat.core.redis.template.RedisOptTemplate,\
+  com.fatcat.core.utils.ApplicationContextUtil
+
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.fatcat.core.env.EnvProcessor

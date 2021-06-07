@@ -1,0 +1,46 @@
+# 使用yaml形式配置路由，方便追加
+spring:
+  cloud:
+    gateway:
+      routes:
+        # 配置查询中心的路由路径
+        - id: fc-search
+          uri:  lb://fc-search
+          predicates:
+            - Path=/fc-search/**
+
+        # 配置用户中心的路由路径
+        - id: fc-user
+          uri:  lb://fc-user
+          predicates:
+            - Path=/fc-user/**
+
+        # 配置系统配置的路由路径
+        - id: fc-system
+          uri:  lb://fc-system
+          predicates:
+            - Path=/fc-system/**
+
+        # 配置学生中心的路径路径
+        - id: fc-student
+          uri:  lb://fc-student
+          predicates:
+            - Path=/fc-student/**
+
+          # 配置老师中心的路径路径
+        - id: fc-teacher
+          uri:  lb://fc-teacher
+          predicates:
+            - Path=/fc-teacher/**
+
+        # 配置后勤中心的路径路径
+        - id: fc-logistics
+          uri:  lb://fc-logistics
+          predicates:
+            - Path=/fc-logistics/**
+
+        # 配置课程中心的路径路径
+        - id: fc-course
+          uri:  lb://fc-course
+          predicates:
+            - Path=/fc-course/**

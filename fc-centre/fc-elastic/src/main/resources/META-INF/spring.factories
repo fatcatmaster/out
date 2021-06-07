@@ -1,0 +1,9 @@
+# 注入自定义配置类
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.fatcat.elastic.config.ElasticSearchConfiguration,\
+  com.fatcat.elastic.template.ElasticDocTemplate,\
+  com.fatcat.elastic.template.ElasticIndexTemplate
+
+# 注入环境配置类
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.fatcat.elastic.env.EnvProcessor

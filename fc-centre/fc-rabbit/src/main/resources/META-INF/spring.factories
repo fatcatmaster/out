@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.fatcat.rabbit.config.RabbitBeanConfiguration,\
+  com.fatcat.rabbit.config.RabbitMqConfiguration
+
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.fatcat.rabbit.env.EnvProcessor

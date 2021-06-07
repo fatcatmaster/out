@@ -1,0 +1,39 @@
+{
+  "groups": [
+    {
+      "name": "spring.hystrix",
+      "type": "com.fatcat.core.feign.config.HystrixValueConfiguration",
+      "sourceType": "com.fatcat.core.feign.config.HystrixValueConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.hystrix.max-request",
+      "type": "java.lang.Integer",
+      "description": "请求处理的队列最大值，线程和信号量处理最大请求量的数",
+      "sourceType": "com.fatcat.core.feign.config.HystrixValueConfiguration",
+      "defaultValue": 200
+    },
+    {
+      "name": "spring.hystrix.strategy",
+      "type": "com.netflix.hystrix.HystrixCommandProperties$ExecutionIsolationStrategy",
+      "description": "熔断策略，自定义默认使用信号量",
+      "sourceType": "com.fatcat.core.feign.config.HystrixValueConfiguration"
+    },
+    {
+      "name": "spring.hystrix.thread-core-size",
+      "type": "java.lang.Integer",
+      "description": "核心线程池的线程大小，策略为线程时生效",
+      "sourceType": "com.fatcat.core.feign.config.HystrixValueConfiguration",
+      "defaultValue": 100
+    },
+    {
+      "name": "spring.hystrix.time-out",
+      "type": "java.lang.Integer",
+      "description": "hystrix 熔断的超时时间，默认 10000，配置值 > feign.connectTimeout + feign.readTimeout",
+      "sourceType": "com.fatcat.core.feign.config.HystrixValueConfiguration",
+      "defaultValue": 60000
+    }
+  ],
+  "hints": []
+}

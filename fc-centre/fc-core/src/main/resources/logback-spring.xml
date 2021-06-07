@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 
+    保留spring默认日志配置，默认配置中定义了日志的打印规则
+    spring-logback 日志路径 ：org.springframework.boot.logging.logback
+    CONSOLE_LOG_PATTERN：控制台日志打印规则
+    FILE_LOG_PATTERN：文件日志打印规则
+    -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!--
+    根据配置文件引入自定义变量
+    配置文件加载顺序：logback.xml -> 本地配置 -> logback-spring.xml -> 远程配置
+    因为需要引入配置变量，所以当前文件命名为logback-spring，而非logback
+    初始化 logback-spring 时，还未获取到变量，需要设置默认值
+        -文件名默认为 fc-apps
+    如果想取消默认值，可以将变量配置在本地配置中
+    -->
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="fc-apps"/>
+    <springProperty scope="context" name="LOG_HOME" source="logging.file.home" defaultValue="/usr/local/fatcat/logs"/>
+
+    <!--自定义常量方式：<property name="" value=""/> -->
+
+    <!-- 控制台日志打印定义 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件日志打印定义 -->
+    <!-- 按照每天生成日志文件 -->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当天有效日志的文件名 -->
+        <file>${LOG_HOME}/${APP_NAME}/${APP_NAME}_info.log</file>
+        <!-- 滚动策略，旧日志文件的文件名 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 日志文件输出的文件名 -->
+            <!-- %i 当文件大小到达阈值时，变为文件索引值 -->
+            <FileNamePattern>${LOG_HOME}/${APP_NAME}/history/${APP_NAME}_info_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- 日志文件保留天数 -->
+            <MaxHistory>30</MaxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>10MB</MaxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 按照每天生成日志文件 -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当天有效日志的文件名 -->
+        <file>${LOG_HOME}/${APP_NAME}/${APP_NAME}_error.log</file>
+        <!-- 滚动策略，旧日志文件的文件名 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 日志文件输出的文件名 -->
+            <FileNamePattern>${LOG_HOME}/${APP_NAME}/history/${APP_NAME}_error_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- 日志文件保留天数 -->
+            <MaxHistory>7</MaxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>10MB</MaxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <!-- 此日志文件只记录 ERROR 级别的 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- SQL 打印 -->
+    <!-- logger用来指定具体的包下的日志级别，additivity=false表示不向上级传递（传递可能会打印多次相同日志）-->
+    <!--    <logger name="org.apache.ibatis" level="DEBUG" additivity="false"/>-->
+    <!--    <logger name="java.sql.Connection" level="DEBUG" additivity="false"/>-->
+    <!--    <logger name="java.sql.Statement" level="DEBUG" additivity="false"/>-->
+    <!--    <logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false"/>-->
+
+    <!-- 全局配置，所有环境（develop 、test 、master）均生效-->
+    <!-- 日志输出级别 低于当前级别的日志不输出 等同于配置 logging.root.level -->
+    <!-- 级别等级 ALL < TRACE < DEBUG < INFO < WARN < ERROR -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="ERROR"/>
+    </root>
+
+    <!-- 自己工程的日志降低日志等级，方便 debug -->
+    <logger name="com.fatcat" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <!-- 单独为不同环境配置日志的打印方式 需要在项目中指定每个服务的运行环境名称，即属性 spring.profiles.active = develop | test | master -->
+    <!--    <springProfile name="develop">-->
+    <!--        <root level="INFO">-->
+    <!--            <appender-ref ref="STDOUT"/>-->
+    <!--        </root>-->
+    <!--    </springProfile>-->
+    <!--    <springProfile name="test">-->
+    <!--        <root level="INFO">-->
+    <!--            <appender-ref ref="STDOUT"/>-->
+    <!--            <appender-ref ref="INFO"/>-->
+    <!--            <appender-ref ref="ERROR"/>-->
+    <!--        </root>-->
+    <!--    </springProfile>-->
+    <!--    <springProfile name="master">-->
+    <!--        <root level="INFO">-->
+    <!--            <appender-ref ref="INFO"/>-->
+    <!--            <appender-ref ref="ERROR"/>-->
+    <!--        </root>-->
+    <!--    </springProfile>-->
+</configuration>

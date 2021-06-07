@@ -1,0 +1,64 @@
+{
+  "groups": [
+    {
+      "name": "spring.mybatis",
+      "type": "com.fatcat.mybatis.config.MybatisValueConfiguration",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.mybatis.character-encoding",
+      "type": "java.lang.String",
+      "description": "配置上个属性使用，指定编码集",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration",
+      "defaultValue": "utf8"
+    },
+    {
+      "name": "spring.mybatis.database",
+      "type": "java.lang.String",
+      "description": "需要使用的数据库名称",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration"
+    },
+    {
+      "name": "spring.mybatis.name",
+      "type": "java.lang.String",
+      "description": "数据库服务器用户名",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration"
+    },
+    {
+      "name": "spring.mybatis.password",
+      "type": "java.lang.String",
+      "description": "数据库服务器密码",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration"
+    },
+    {
+      "name": "spring.mybatis.server-timezone",
+      "type": "java.lang.String",
+      "description": "指定时区，也可配置成\"GMT+8\"，但特殊字符'+'需要转换成十六进制'%2B',即=\"GMT%2B8\"",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration",
+      "defaultValue": "Asia\/Shanghai"
+    },
+    {
+      "name": "spring.mybatis.ssl",
+      "type": "java.lang.Boolean",
+      "description": "高版本mysql需要指定是否使用ssl连接",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.mybatis.url",
+      "type": "java.lang.String",
+      "description": "数据库服务器地址",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration"
+    },
+    {
+      "name": "spring.mybatis.use-unicode",
+      "type": "java.lang.Boolean",
+      "description": "使用自定义编码为 utf-8;默认gbk",
+      "sourceType": "com.fatcat.mybatis.config.MybatisValueConfiguration",
+      "defaultValue": true
+    }
+  ],
+  "hints": []
+}
